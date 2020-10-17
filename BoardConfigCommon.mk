@@ -165,6 +165,7 @@ BOARD_ROOT_EXTRA_FOLDERS := oem/OP
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # Power
+TARGET_USES_NON_LEGACY_POWERHAL := true
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/virtual/input/lge_touch/tap2wake"
 
 # QCOM
