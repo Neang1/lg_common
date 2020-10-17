@@ -21,6 +21,7 @@ COMMON_PATH := device/lge/sdm845-common
 
 # define hardware platform
 PRODUCT_PLATFORM := sdm845
+TARGET_BOARD_PLATFORM := sdm845
 
 PRODUCT_SOONG_NAMESPACES += \
     device/lge/sdm845-common/bootctrl
@@ -150,6 +151,14 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
+
+# QTI common
+TARGET_COMMON_QTI_COMPONENTS := \
+    av \
+    bt \
+    display \
+    telephony \
+    wfd
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -406,17 +415,6 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
 
-# Telephony
-PRODUCT_PACKAGES += \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
 # TextClassifier
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
@@ -474,7 +472,5 @@ PRODUCT_PACKAGES += \
     libdisplayconfig.vendor \
     libnl \
     libqdMetaData \
-    libqdMetaData.system
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+    libqdMetaData.system \
+    libwfdaac
