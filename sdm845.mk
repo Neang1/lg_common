@@ -148,6 +148,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     liba2dpoffload \
     libbthost_if \
+    BluetoothQti \
+    libbluetooth_qti \
     vendor.qti.hardware.bluetooth_audio@2.0.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor
 
@@ -195,10 +197,12 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     libvulkan
 
-# Doze
- PRODUCT_PACKAGES += \
-    DeviceParts \
-    LGEDoze
+# ParanoidDoze
+PRODUCT_PACKAGES += \
+    ParanoidDoze
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.sensor.pickup=lge.sensor.lgpick
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -262,10 +266,6 @@ PRODUCT_COPY_FILES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.judyln
-
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay@2.0-service.lge_sdm845
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -379,6 +379,16 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/permissions/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-qti.xml \
     $(COMMON_PATH)/permissions/product_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-qti.xml
 
+# QTI common
+TARGET_BOARD_PLATFORM := sdm845
+TARGET_COMMON_QTI_COMPONENTS += \
+    av \
+    bt \
+    init \
+    overlay \
+    perf \
+    usb \
+
 # RCS
 PRODUCT_PACKAGES += \
     rcs_service_aidl \
@@ -416,16 +426,9 @@ PRODUCT_PACKAGES += \
     qti_telephony_utils.xml \
     telephony-ext
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
 # TextClassifier
 PRODUCT_PACKAGES += \
     textclassifier.smartselection.bundle1
-
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.lge_sdm845
 
 # Trust HAL
 PRODUCT_PACKAGES += \

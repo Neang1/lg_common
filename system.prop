@@ -22,6 +22,8 @@ audio.offload.video=true
 ro.kernel.ebpf.supported=true
 
 # Bluetooth
+persist.vendor.btstack.enable.splita2dp=true
+ro.bluetooth.library_name=libbluetooth_qti.so
 vendor.bluetooth.soc=cherokee
 
 # Charger
@@ -102,7 +104,9 @@ config.disable_rtt=true
 persist.debug.wfd.enable=1
 persist.sys.wfd.virtual=0
 
-# Media 
+# Media
+av.offload.enable=true
+debug.stagefright.ccodec=1
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
 media.settings.xml=/vendor/etc/media_profiles_vendor.xml
@@ -131,3 +135,7 @@ ro.hwui.text_small_cache_width=1024
 ro.hwui.text_small_cache_height=1024
 ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=4096
+
+# Serial Console
+ro.console.enable=0
+ro.debuggable=0
