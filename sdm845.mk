@@ -202,7 +202,12 @@ PRODUCT_PACKAGES += \
     ParanoidDoze
 
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.sensor.proximity=true \
     ro.sensor.pickup=lge.sensor.lgpick
+
+# PowerStats
+PRODUCT_PACKAGES += \
+    android.hardware.power.stats@1.0-service.mock
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -388,6 +393,7 @@ TARGET_COMMON_QTI_COMPONENTS += \
     overlay \
     perf \
     usb \
+    media
 
 # RCS
 PRODUCT_PACKAGES += \
