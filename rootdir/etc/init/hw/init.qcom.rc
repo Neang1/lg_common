@@ -791,6 +791,13 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     disabled
     oneshot
 
+# Start powerhal
+service vendor.power /vendor/bin/hw/android.hardware.power-service
+    override
+    class hal
+    user system
+    group system input
+
 #service qti-testscripts /system/bin/sh /system/etc/init.qcom.testscripts.sh
 #    class late_start
 #    user root

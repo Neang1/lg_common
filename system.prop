@@ -22,7 +22,6 @@ audio.offload.video=true
 ro.kernel.ebpf.supported=true
 
 # Bluetooth
-persist.vendor.btstack.enable.splita2dp=true
 ro.bluetooth.library_name=libbluetooth_qti.so
 vendor.bluetooth.soc=cherokee
 
@@ -48,11 +47,14 @@ ril.subscription.types=NV,RUIM
 ro.telephony.default_network=9
 
 # Graphics
-debug.egl.hw=1
-debug.sf.hw=1
+debug.egl.hw=0
+debug.sf.hw=0
 debug.gralloc.gfx_ubwc_disable=0
 debug.gralloc.enable_fb_ubwc=1
 debug.sf.disable_backpressure=1
+debug.cpurend.vsync=true
+sdm.debug.disable_inline_rotator=1
+sdm.debug.disable_inline_rotator_secure=1
 ro.surface_flinger.protected_contents=true
 ro.surface_flinger.has_wide_color_display=true
 ro.surface_flinger.has_HDR_display=true
@@ -75,15 +77,11 @@ persist.hwc.ptor.enable=true
 debug.sf.recomputecrop=0
 debug.sf.gpu_comp_tiling=1
 debug.sf.disable_hwc=0
-debug.enable.sglscale=1
-debug.performance.tuning=1
-ro.surface_flinger.supports_background_blur=1 
-persist.sys.sf.disable_blurs=0 
+ro.surface_flinger.supports_background_blur=1
+persist.sys.sf.disable_blurs=0
 ro.sf.blurs_are_expensive=1
 ro.surface_flinger.use_color_management=true
-
-# Disable vsync for cpu rendered apps
-debug.cpurend.vsync=false
+ro.vendor.display.cabl=2
 
 # IOP
 vendor.iop.enable_uxe=1

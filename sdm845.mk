@@ -27,12 +27,14 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(COMMON_PATH)/overlay \
-    $(COMMON_PATH)/overlay-system
+    $(COMMON_PATH)/overlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    $(COMMON_PATH)/overlay-lineage/lineage-sdk
+
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep \
+    Settings \
+    SystemUI
 
 # Properties
 TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
@@ -138,24 +140,23 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/sound_trigger_mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_mixer_paths.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    liba2dpoffload \
-    libbthost_if \
-    BluetoothQti \
+    android.hardware.bluetooth.audio@2.0-impl \
+    com.qualcomm.qti.bluetooth_audio@1.0 \
+    audio.bluetooth.default \
     libbluetooth_qti \
+    libbthost_if \
+    vendor.qti.hardware.bluetooth_audio@2.0 \
     vendor.qti.hardware.bluetooth_audio@2.0.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 3120
-TARGET_SCREEN_WIDTH := 1440
+TARGET_BOOT_ANIMATION_RES := 1440
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -166,7 +167,8 @@ PRODUCT_PACKAGES += \
 
 # Component overrides
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml
+    $(LOCAL_PATH)/configs/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
+    $(LOCAL_PATH)/configs/component-overrides_qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/component-overrides.xml
 
 # Context Hub
 PRODUCT_PACKAGES += \
@@ -209,6 +211,10 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     android.hardware.power.stats@1.0-service.mock
 
+# PASR HAL
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.power.pasr.enabled=true
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.lge_sdm845
@@ -234,8 +240,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service
+    android.hardware.health@2.1-impl-qti \
+    android.hardware.health@2.1-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -363,7 +369,8 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti
+    android.hardware.power-service \
+    android.hardware.power-impl
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
@@ -391,9 +398,12 @@ TARGET_COMMON_QTI_COMPONENTS += \
     bt \
     init \
     overlay \
-    perf \
-    usb \
-    media
+    perf
+
+# QTI Perf
+PRODUCT_PACKAGES += \
+   libtflite \
+   libtextclassifier_hash
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -424,6 +434,10 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
 
+# System Helper
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.systemhelper@1.0.vendor
+
 # Telephony
 PRODUCT_PACKAGES += \
     qti-telephony-hidl-wrapper \
@@ -439,6 +453,10 @@ PRODUCT_PACKAGES += \
 # Trust HAL
 PRODUCT_PACKAGES += \
     vendor.lineage.trust@1.0-service
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0-service.qti
 
 # USB
 PRODUCT_PACKAGES += \
