@@ -98,16 +98,10 @@ vendor.audio.feature.vbat.enable=true
 vendor.audio.feature.wsa.enable=false
 
 # Bluetooth
-persist.sys.fflag.override.settings_bluetooth_hearing_aid=true 
-persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false
-persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2
+persist.vendor.qcom.bluetooth.enable.splita2dp=true
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
-persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true
-persist.vendor.qcom.bluetooth.enable.splita2dp=true 
-persist.vendor.qcom.bluetooth.scram.enabled=false 
-persist.vendor.qcom.bluetooth.soc=cherokee 
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
-ro.vendor.bluetooth.wipower=false 
 vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
@@ -125,7 +119,10 @@ debug.sf.latch_unsignaled=1
 persist.sys.sf.native_mode=0 
 
 # DPM
-persist.vendor.dpm.feature=0
+persist.vendor.dpm.feature=o
+persist.vendor.dpm.loglevel=0
+persist.vendor.dpm.nsrm.bkg.evt=3955
+persist.vendor.dpmhalservice.enable=1
 
 # DRM
 drm.service.enabled=true
@@ -160,6 +157,7 @@ rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.telephony.default_network=9
 ro.vendor.use_data_netmgrd=true
 persist.vendor.radio.add_power_save=1
+persist.vendor.radio.mt_sms_ack=30
 
 # Sensors
 persist.vendor.sensors.diag_buffer_mode=false
