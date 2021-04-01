@@ -207,7 +207,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@2.0
 
 # Doze
- PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     LGEDoze
 
 # Fingerprint
@@ -440,6 +440,10 @@ PRODUCT_BOOT_JARS += \
 # Tethering
 PRODUCT_PACKAGES += \
     TetheringConfigOverlay
+
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service.lge_sdm845
 
 # Touch
 PRODUCT_PACKAGES += \
