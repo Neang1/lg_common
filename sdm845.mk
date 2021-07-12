@@ -169,6 +169,10 @@ PRODUCT_PACKAGES += \
     android.hardware.contexthub@1.0-impl.generic \
     android.hardware.contexthub@1.0-service
 
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 # DAC
 PRODUCT_PACKAGES += \
     QuadDACPanel \
@@ -204,7 +208,6 @@ PRODUCT_PACKAGES += \
 
 # Doze
  PRODUCT_PACKAGES += \
-    DeviceParts \
     LGEDoze
 
 # Fingerprint
@@ -491,7 +494,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Packages
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0 \
+    android.hardware.thermal@2.0-service.qti \
     libtflite \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
