@@ -412,12 +412,14 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/permissions/privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-qti.xml \
     $(COMMON_PATH)/permissions/product_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-qti.xml
 
-# QTI Perf
-PRODUCT_PACKAGES += \
-   libtextclassifier_hash
-
 # QTI common
--include vendor/qcom/common/perf/perf-vendor.mk
+TARGET_BOARD_PLATFORM := sdm845
+TARGET_COMMON_QTI_COMPONENTS += \
+    bt \
+    init \
+    perf \
+    overlay \
+    gps \
 
 # RCS
 PRODUCT_PACKAGES += \
