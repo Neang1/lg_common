@@ -379,6 +379,23 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
+# Additional native libraries
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/etc/perf/commonresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonresourceconfigs.xml \
+    $(COMMON_PATH)/etc/perf/commonsysnodesconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/commonsysnodesconfigs.xml \
+    $(COMMON_PATH)/etc/perf/perfboostsconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfboostsconfig.xml \
+    $(COMMON_PATH)/etc/perf/perfconfigstore.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perfconfigstore.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile0.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile1.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile2.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile3.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile4.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile4.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile5.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile5.xml \
+    $(COMMON_PATH)/etc/perf/perf-profile6.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/perf-profile6.xml \
+    $(COMMON_PATH)/etc/perf/targetconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetconfig.xml \
+    $(COMMON_PATH)/etc/perf/targetresourceconfigs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/perf/targetresourceconfigs.xml
+
+
 # Protobuf
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full-vendorcompat \
