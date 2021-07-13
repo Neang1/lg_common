@@ -98,14 +98,11 @@ vendor.audio.feature.vbat.enable=true
 vendor.audio.feature.wsa.enable=false
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.disabled=true
-persist.vendor.bt.aac_frm_ctl.enabled=true
-persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac
-persist.vendor.qcom.bluetooth.enable.splita2dp=false
-ro.bluetooth.a2dp_offload.supported=false
-ro.vendor.bluetooth.wipower=false
+persist.vendor.qcom.bluetooth.enable.splita2dp=true
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
+persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
+persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 vendor.qcom.bluetooth.soc=cherokee
-persist.vendor.bt.a2dp.aac_whitelist=false
 
 # Camera
 camera.disable_zsl_mode=true
