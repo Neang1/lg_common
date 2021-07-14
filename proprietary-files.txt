@@ -465,6 +465,18 @@ vendor/lib/vendor.qti.gnss@3.0.so
 vendor/lib/vendor.qti.gnss@3.0-service.so
 vendor/lib/vendor.qti.hardware.cacert@1.0.so
 
+# IOP - from OnePlus6 - RKQ1.201217.002/2106301530
+vendor/bin/hw/vendor.qti.hardware.iop@2.0-service|5f71eaa8dc747d1526349d7f02c73a88b328986b
+vendor/etc/init/vendor.qti.hardware.iop@2.0-service.rc|fd11367b2585702190ef2577ce2ce6fc68f3a2f8
+vendor/lib64/libqti-iopd-client.so|512e12a6a86eb2dc5ad73a590c996d0e67e2ec1a
+vendor/lib64/libqti-iopd.so|89fe72a7605291ec023806c65fe68d20b9ca4700
+vendor/lib64/vendor.qti.hardware.iop@1.0.so|ab7e9d16481a52a919cd7484eed480913ce29e66
+vendor/lib64/vendor.qti.hardware.iop@2.0.so|a99da96aa7abf8b9a4cb950113d7fe4ccbe4ff6c
+vendor/lib/libqti-iopd-client.so|89ce02457de1e93a4ef0a3b20f27042350f1c6ac
+vendor/lib/libqti-iopd.so|2350989227da9612f9497b40bb1571f318706c75
+vendor/lib/vendor.qti.hardware.iop@1.0.so|7244776c0f9ef0e01b267b7ef92e8db5912ad89a
+vendor/lib/vendor.qti.hardware.iop@2.0.so|ec767e11249f7f86d66f232676e6b2d5382979e4
+
 # IRQ balance - from LA.UM.9.8.r1-02700-SDM710.0
 vendor/bin/msm_irqbalance|c0910fb319bb8287f176f26078241299455baad0
 vendor/etc/msm_irqbalance.conf|d551a7bb3d756736861cfe21108dcdf77c527f6f
