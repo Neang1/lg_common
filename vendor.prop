@@ -139,6 +139,15 @@ persist.device_config.use_cgroup_freezer=true
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.qti.sys.fw.bg_apps_limit=60
 
+# IOP
+vendor.iop.enable_uxe=1
+vendor.iop.enable_prefetch_ofr=true
+vendor.perf.iop_v3.enable=true
+vendor.perf.gestureflingboost.enable=true
+vendor.perf.workloadclassifier.enable=true
+persist.vendor.qti.games.gt.prof=1
+ro.vendor.at_library=libqti-at.so
+
 # Qualcomm System Daemon
 persist.vendor.qcomsysd.enabled=1
 
