@@ -1,2 +1,1 @@
-#============= rild ==============
-get_prop(rild, default_prop)
+get_prop(rild, vendor_lge_misc_prop)

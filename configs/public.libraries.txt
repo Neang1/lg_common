@@ -5,3 +5,6 @@ libsdsprpc.so
 libfastcvopt.so
 liblistensoundmodel2.so
 libOpenCL.so
+liblistenjni.so
+libprotobuf-cpp-full.so
+libprotobuf-cpp-lite.so
