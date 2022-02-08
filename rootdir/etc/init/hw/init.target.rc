@@ -45,6 +45,31 @@ on init
     write /dev/stune/top-app/schedtune.colocate 1
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
+    # Setup permission for Power HAL
+    chown system system /dev/cpuset/top-app/uclamp.min
+    chown system system /dev/cpu_dma_latency
+    chown system system /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+    chown system system /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+    chown system system /sys/class/kgsl/kgsl-3d0/force_rail_on
+    chown system system /sys/class/kgsl/kgsl-3d0/force_clk_on
+    chown system system /sys/class/kgsl/kgsl-3d0/idle_timer
+    chown system system /sys/class/devfreq/soc:qcom,cpubw/min_freq
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq
+    chown system system /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
+    chown system system /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
+
+    chmod 0664 /dev/cpuset/top-app/uclamp.min
+    chmod 0664 /dev/cpu_dma_latency
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/min_freq
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/devfreq/max_freq
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/force_rail_on
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/force_clk_on
+    chmod 0664 /sys/class/kgsl/kgsl-3d0/idle_timer
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpubw/min_freq
+    chmod 0664 /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
+    chmod 0664 /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
+
 # Freezer setup
     write /dev/freezer/frozen/freezer.killable 1
 
@@ -66,6 +91,11 @@ on init
 #    swapon_all /vendor/etc/fstab.qcom
 #    restorecon_recursive /mnt/vendor/persist
 #    mkdir /mnt/vendor/persist/data 0700 system system
+
+    mkdir /mnt/vendor/dsp 0770 root root
+    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
+    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3
+    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind
 
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
@@ -156,6 +186,10 @@ on property:sys.shutdown.requested=*
 on charger
     start vendor.power_off_alarm
     setprop sys.usb.configfs 1
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/white/brightness
+    write /sys/class/leds/red/brightness 255
+    write /sys/class/leds/white/brightness 255
 
 ## import cne init file
 #on post-fs
@@ -342,13 +376,13 @@ service ppd /vendor/bin/mm-pp-dpps
     socket pps stream 0660 system system
     disabled
 
-on property:init.svc.vendor.hwcomposer-2-3=stopped
+on property:init.svc.vendor.hwcomposer-2-2=stopped
     stop ppd
 
-on property:init.svc.vendor.hwcomposer-2-3=running
+on property:init.svc.vendor.hwcomposer-2-2=running
     start ppd
 
-on property:init.svc.vendor.hwcomposer-2-3=restarting
+on property:init.svc.vendor.hwcomposer-2-2=restarting
     stop ppd
 
 #service nqs /system/bin/nqs
@@ -381,3 +415,11 @@ service energy-awareness /system/vendor/bin/energy-awareness
     user system
     group system
     oneshot
+
+service vendor.contexthub-hal-1-0 /vendor/bin/hw/android.hardware.contexthub@1.0-service
+    override
+    class hal
+    interface android.hardware.contexthub@1.0::IContexthub default
+    user system
+    group system
+    disabled

@@ -3,7 +3,7 @@
 #
 
 # APEX
-ro.apex.updatable=true
+ro.apex.updatable=false
 
 # Audio
 af.fast_track_multiplier=1
@@ -97,6 +97,13 @@ vendor.audio.feature.usb_offload_sidetone_volume.enable=false
 vendor.audio.feature.vbat.enable=true
 vendor.audio.feature.wsa.enable=false
 
+# ART
+pm.dexopt.ab-ota=speed-profile
+dalvik.vm.dex2oat-filter=speed
+dalvik.vm.image-dex2oat-filter=speed
+ro.vendor.qti.am.reschedule_service=true
+ro.sys.fw.dex2oat_thread_count=8
+
 # Bluetooth
 persist.bluetooth.a2dp_offload.disabled=true
 persist.vendor.bt.aac_frm_ctl.enabled=true
@@ -105,12 +112,17 @@ persist.vendor.qcom.bluetooth.enable.splita2dp=false
 ro.bluetooth.a2dp_offload.supported=false
 ro.vendor.bluetooth.wipower=false
 vendor.qcom.bluetooth.soc=cherokee
+persist.vendor.bt.a2dp.aac_whitelist=false
+persist.vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 camera.disable_zsl_mode=true
 
 # CNE
 persist.vendor.cne.feature=1
+
+# Crypto
+ro.crypto.volume.filenames_mode=aes-256-cts
 
 # Display
 dev.pm.dyn_samplingrate=1
@@ -119,9 +131,6 @@ ro.vendor.display.cabl=0
 vendor.display.enable_default_color_mode=1
 debug.sf.latch_unsignaled=1
 persist.sys.sf.native_mode=0 
-
-# DPM
-persist.vendor.dpm.feature=0
 
 # DRM
 drm.service.enabled=true
@@ -137,10 +146,6 @@ vendor.display.disable_rotator_downscale=1
 # Memory
 persist.device_config.use_cgroup_freezer=true
 
-# Perf
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.qti.sys.fw.bg_apps_limit=60
-
 # Qualcomm System Daemon
 persist.vendor.qcomsysd.enabled=1
 
@@ -155,6 +160,10 @@ persist.vendor.radio.sib16_support=1
 rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so
 ro.telephony.default_network=9
 ro.vendor.use_data_netmgrd=true
+persist.vendor.radio.add_power_save=1
+persist.vendor.radio.rat_on=combine
+persist.vendor.radio.enableadvancedscan=false
+
 
 # Sensors
 persist.vendor.sensors.diag_buffer_mode=false
@@ -164,8 +173,15 @@ persist.vendor.lge.sar_keeponoff=on
 persist.vendor.lge.sar_dependmode=on
 persist.vendor.lge.sar_fakestatus=off 
 
+# SoC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=SDM845
+
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
+
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
 
 # USB
 persist.sys.usb.config.extra=none

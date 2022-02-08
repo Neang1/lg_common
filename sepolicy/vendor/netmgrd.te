@@ -1,2 +1,2 @@
-get_prop(netmgrd, vendor_lge_misc_prop)
-set_prop(netmgrd, vendor_radio_prop)
+#============= netmgrd ==============
+get_prop(netmgrd, exported3_radio_prop)

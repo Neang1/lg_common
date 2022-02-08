@@ -3,6 +3,8 @@
 # import zram configurations
 import /vendor/init.lge.svelte.rc
 
+on init
+
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -64,6 +66,19 @@ on post-fs
     chown root system /sys/module/lge_handle_panic/parameters/gen_venus_panic
     chown root system /sys/module/lge_handle_panic/parameters/gen_wdt_bark
     chown root system /sys/module/lge_handle_panic/parameters/gen_wdt_bite
+
+    # change permissions on ioninfo
+    chown root log /proc/ioninfo
+    chmod 0440 /proc/ioninfo
+
+# forced_usb_path_change
+service forced_usb_path_change /vendor/bin/init.lge.forced_usb_path_change.sh
+    disabled
+    oneshot
+
+on property:vold.decrypt=trigger_load_persist_props && property:ro.boot.vendor.lge.forced_usb_path_change=enable
+    start forced_usb_path_change
+
 
 # enable & disable crash handler, rtb & trace event through property
 on property:persist.vendor.lge.service.crash.enable=*
@@ -132,3 +147,5 @@ on property:sys.boot_completed=1 && property:persist.vendor.lge.service.crash.en
 
     # free buffer
     write /sys/kernel/debug/tracing/free_buffer 1
+
+on post-fs-data

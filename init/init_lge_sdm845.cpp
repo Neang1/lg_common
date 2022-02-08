@@ -135,6 +135,8 @@ void init_target_properties() {
     property_override("ro.product.product.model", model);
     property_override("ro.product.system.model", model);
     property_override("ro.product.vendor.model", model);
+    property_override("ro.boot.verifiedbootstate", "green");
+    property_override("ro.oem_unlock_supported", "0");
 }
 
 void vendor_load_properties() {
@@ -142,5 +144,5 @@ void vendor_load_properties() {
     init_target_properties();
     LOG(INFO) << "Loading Coral Fingerprint";
 	property_override_multifp("ro.build.fingerprint", "ro.system.build.fingerprint", "ro.bootimage.build.fingerprint",
-	    "ro.vendor.build.fingerprint", "google/redfin/redfin:11/RQ1A.201205.010/6953398:user/release-keys");
+	    "ro.vendor.build.fingerprint", "google/raven/raven:12/SD1A.210817.036/7805805:user/release-keys");
 }
