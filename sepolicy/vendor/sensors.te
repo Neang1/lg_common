@@ -1,2 +1,4 @@
-#============= sensors ==============
-allow sensors mnt_vendor_file:file { getattr open read };
+allow sensors persist_file:dir search;
+
+allow sensors sns_file:dir rw_dir_perms;
+allow sensors sns_file:file rw_file_perms;

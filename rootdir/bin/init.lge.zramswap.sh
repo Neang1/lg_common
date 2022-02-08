@@ -33,7 +33,7 @@ start() {
   # Add zram tunable parameters
   # you can set "compr_zram=lzo" or "compr_zram=lz4"
   # but when you set "zram=lz4", you must set "CONFIG_ZRAM_LZ4_COMPRESS=y"
-  compr_zram=lz4
+  compr_zram=lzo
   nr_multi_zram=1
   sz_zram0=0
   zram_async=0
@@ -79,12 +79,12 @@ start() {
     ;;
 
     "sdm845" | "msmnile" | "sm6150")
-      sz_zram=3145728
-      sz_zram0=3145728
+      sz_zram=$(( memtotal_kb / 4 ))
+      sz_zram0=$(( memtotal_kb / 4 ))
       compr_zram=lz4
       nr_multi_zram=4
       zram_async=1
-      max_write_threads=8
+      max_write_threads=4
 
       # Must use == expression instead of -eq to compare string
       if [ "$target" == "msmnile" ] ; then
@@ -169,7 +169,7 @@ start() {
       echo ${sz_zram0}k > /sys/block/zram${zramdev_num}/disksize
     fi
     mkswap /dev/block/zram${zramdev_num} && (echo "mkswap ${zramdev_num}") || (echo "mkswap ${zramdev_num} failed and exiting(${?})" ; exit $?)
-    swapon -p $swap_prio /dev/block/zram0 && (echo "swapon ${zramdev_num}") || (echo "swapon ${zramdev_num} failed and exiting(${?})" ; exit $?)
+    swapon -p $swap_prio /dev/block/zram${zramdev_num} && (echo "swapon ${zramdev_num}") || (echo "swapon ${zramdev_num} failed and exiting(${?})" ; exit $?)
     ((zramdev_num++))
     ((swap_prio++))
   done
